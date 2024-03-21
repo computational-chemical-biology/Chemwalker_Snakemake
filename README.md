@@ -1,6 +1,6 @@
 # ChemWalker Snakemake workflow
 
-This workflow allows the use of [ChemWalker](https://github.com/computational-chemical-biology/ChemWalker) on HPC. A slurm job example is provided as an example of parallel job.
+This workflow allows the use of [ChemWalker](https://github.com/computational-chemical-biology/ChemWalker) on HPC. A slurm job file is provided as an example of parallel job.
 
 
 ## Installation
@@ -26,7 +26,7 @@ pip install snakemake
 Make sure to change the command line interface before installing ChemWalker
 
 ```
-cp ../network_walk bin/
+cp ../bin/network_walk bin/
 python setup install
 ```
 
@@ -41,7 +41,7 @@ You can test the setup running a dry run with
 snakemake -n
 ```
 
-If everything is ok with your installation you should see a list of jobs to run. You can processed doing
+If everything is ok with your installation you should see a list of jobs to run. You can proceed doing
 
 ```
 snakemake --cores all --keep-going
