@@ -1,0 +1,9 @@
+taskid: 69777aa026ac455988033599da083f35
+workflow: FBMN-gnps2 
+metfragpath: "MetFrag2.3-CL.jar"
+savegraph: 0
+db: COCONUT.psv 
+ion_mode: 1 
+adduct: '[M+H]+'
+ppm: 15
+
