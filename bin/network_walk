@@ -56,9 +56,25 @@ def random_walk(taskid, workflow, comp, db,
     db = pd.read_csv(db, sep='|')
     kw = json.loads(kw)
     if comp!=0:
-        tlid = walk_conn_comp(net=net, spectra=spectra, tabgnps=gnps_tab,
-                              dbmatch=match_tab, db=db, comp_index=comp,
-                              metpath=metfragpath, **kw)
+        # The try and catch is needed to capture those nodes with no candidates by MetFrag
+        try:
+            tlid = walk_conn_comp(net=net, spectra=spectra, tabgnps=gnps_tab,
+				                                dbmatch=match_tab, db=db, comp_index=comp,
+				                                metpath=metfragpath, **kw)
+        except Exception as error:
+            print("An exception occurred:", error)
+            headers = ["Score", "InChI", "FragmenterScore_Values", "MaximumTreeDepth", 
+		                              "SmilesOfExplPeaks", "MonoisotopicMass", "Identifier", 
+		                              "MolecularFormula", "FormulasOfExplPeaks", "InChIKey2", 
+		                              "InChIKey1", "FragmenterScore", "ExplPeaks", "NoExplPeaks", 
+		                              "NumberPeaksUsed", "cluster index", "uid", "chw_prob"
+		                              ]
+
+            # Create an empty dictionary with empty lists for each header
+            empty_data = {header: [] for header in headers}
+
+            # Convert the dictionary to a DataFrame
+            tlid = pd.DataFrame(empty_data)
     else:
         ltlid = []
         for c in net.ComponentIndex.unique():  
